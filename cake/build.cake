@@ -28,7 +28,7 @@ Configure()
     //applications configuration
 	.AddApplication("android-colors", configuration => configuration
         .WithProject("Sources/AutoFindViews.Build/AutoFindViews.Build.csproj")
-        .WithVersion("0.8.0")
+        .WithVersion("0.8.1")
         .UseNugetPack(nugetConfiguration => nugetConfiguration
             .WithNuspec("NuGet/Package.nuspec")
             .WithPackageId("Ideine.AutoFindViews")
@@ -37,7 +37,7 @@ Configure()
             //dependencies
             .AddFile("Sources/AutoFindViews.Build/bin/Release/net46/Newtonsoft.Json.dll", "autofindviews")
             //props & target file
-            .AddFile("Sources/AutoFindViews.Build/AutoFindViews.targets", "build/monoandroid")
+            .AddFile("Sources/AutoFindViews.Build/Ideine.AutoFindViews.targets", "build/monoandroid")
         )
     )
 	.Build();
