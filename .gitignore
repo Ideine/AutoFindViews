@@ -6,6 +6,7 @@
 *.user
 *.sln.docstates
 .vscode/
+.vs/
 
 # ADDED PLE: User Specific files for Xamarin Studio
 *.sln.cache
