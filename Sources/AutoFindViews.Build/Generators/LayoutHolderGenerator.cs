@@ -4,7 +4,6 @@
 	using System.Xml.Linq;
 	using System.IO;
 	using System.Text;
-	using AutoFindViews.Build.Helper;
 	using Microsoft.Build.Evaluation;
 
 	public class LayoutHolderGenerator
@@ -39,18 +38,26 @@
 			var name = Path.GetFileNameWithoutExtension(inputPath);
 			var classname = CreateClassName(name);
 
+			if (File.Exists(outputPath))
+			{
+				File.Delete(outputPath);
+			}
+
 			var content = Templates.LoadTemplate(template);
 
 			var declarations = ViewPropertyDeclaration.ParseDeclarations(xml, mapper);
 
 			var fields = new StringBuilder();
 			var properties = new StringBuilder();
+			var disposing = new StringBuilder();
 			foreach (var declaration in declarations)
 			{
 				fields.AppendLine($"\t\t// L{declaration.Line}: {declaration.Source}");
 				fields.AppendLine($"\t\tprivate {declaration.Type} _{declaration.Id};\n");
 				properties.AppendLine($"\t\t// L{declaration.Line}: {declaration.Source}");
 				properties.Append($"\t\tpublic {declaration.Type} {declaration.Id} => _{declaration.Id} ?? (_{declaration.Id} = ");
+				disposing.AppendLine($"\t\t\t_{declaration.Id}?.Dispose();");
+				disposing.AppendLine($"\t\t\t_{declaration.Id}=null;");
 
 				if (declaration.IsInclude)
 				{
@@ -60,12 +67,12 @@
 				{
 					properties.AppendLine($"Source.FindViewById<{declaration.Type}>(Resource.Id.{declaration.Id}));\n");
 				}
-
 			}
 
-			content = string.Format(content, nspace, name, classname, fields, properties);
+			content = string.Format(content, nspace, name, classname, fields, properties, disposing);
+			File.WriteAllText(outputPath, content);
 
-			return FileHelper.WriteIfDifferent(outputPath, content);
+			return true;
 		}
 	}
 }
