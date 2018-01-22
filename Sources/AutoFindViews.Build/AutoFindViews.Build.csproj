@@ -3,6 +3,12 @@
     <TargetFramework>net46</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Generators\Templates\LayoutHolder_Designer_cs.template" />
+    <None Remove="Generators\Templates\Layouts_Designer_cs.template" />
+    <EmbeddedResource Include="Generators\Templates\LayoutHolder_Designer_cs.template" />
+    <EmbeddedResource Include="Generators\Templates\Layouts_Designer_cs.template" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.Build" Version="15.3.409" />
     <PackageReference Include="Microsoft.Build.Engine" Version="15.3.409" />
     <PackageReference Include="Microsoft.Build.Framework" Version="15.3.409" />

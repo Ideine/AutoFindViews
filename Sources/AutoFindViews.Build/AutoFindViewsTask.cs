@@ -48,7 +48,7 @@
 		{
 			if (!File.Exists(this.Source.ItemSpec))
 			{
-				Log.LogError(null, null, null, Source, 0, 0, 0, 0, $"file {this.Source} not found");
+				Log.LogError($"file {this.Source} not found");
 				return false;
 			}
 
@@ -70,15 +70,15 @@
 
 			catch (XmlException xe)
 			{
-				Log.LogMessage("Error (xml): {0}", xe.Message);
-				Log.LogError(null, null, null, Source, xe.LineNumber, xe.LinePosition, 0, 0, $"{xe.Message}");
+				Log.LogMessage("Error (xml): {0} {1}", xe.Message, xe);
+				Log.LogError($"{xe.Message}");
 
 				return false;
 			}
 			catch (Exception e)
 			{
-				Log.LogMessage("Error: {0}", e.Message);
-				Log.LogError(null, null, null, Source, 0, 0, 0, 0, $"{e.Message}");
+				Log.LogMessage("Error: {0} {1}", e.Message, e);
+				Log.LogError($"{e.Message}");
 				return false;
 			}
 		}

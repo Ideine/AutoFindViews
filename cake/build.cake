@@ -26,9 +26,9 @@ Configure()
         .UseNugetPush(nugetConfiguration => nugetConfiguration.WithApiKeyFromEnvironment())
     )
     //applications configuration
-	.AddApplication("android-colors", configuration => configuration
+	.AddApplication("autofindviews", configuration => configuration
         .WithProject("Sources/AutoFindViews.Build/AutoFindViews.Build.csproj")
-        .WithVersion("0.8.1")
+        .WithVersion("0.8.2")
         .UseNugetPack(nugetConfiguration => nugetConfiguration
             .WithNuspec("NuGet/Package.nuspec")
             .WithPackageId("Ideine.AutoFindViews")
