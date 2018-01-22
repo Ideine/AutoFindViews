@@ -1,5 +1,5 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <UsingTask TaskName="AutoFindViews.Build.AutoFindViewsTask" AssemblyFile="AutoFindViews.Build.dll"/>
+    <UsingTask TaskName="AutoFindViews.Build.AutoFindViewsTask" AssemblyFile="../../autofindviews/AutoFindViews.Build.dll"/>
 
     <PropertyGroup>
         <CoreCompileDependsOn>

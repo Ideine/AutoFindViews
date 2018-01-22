@@ -33,16 +33,11 @@ Configure()
             .WithNuspec("NuGet/Package.nuspec")
             .WithPackageId("Ideine.AutoFindViews")
             .WithReleaseNotesFile("NuGet/notes.md")
-            .AddFileFromArtifacts("net46/AutoFindViews.Build.dll", "colors")
+            .AddFileFromArtifacts("net46/AutoFindViews.Build.dll", "autofindviews")
             //dependencies
-            /* 
-            .AddFile("src/Storm.BuildTasks.AndroidColors/bin/Release/net46/Storm.BuildTasks.Common.dll", "colors")
-            .AddFile("src/Storm.BuildTasks.AndroidColors/bin/Release/net46/Microsoft.CodeAnalysis.CSharp.dll", "colors")
-            .AddFile("src/Storm.BuildTasks.AndroidColors/bin/Release/net46/Microsoft.CodeAnalysis.dll", "colors")
-            */
+            .AddFile("Sources/AutoFindViews.Build/bin/Release/net46/Newtonsoft.Json.dll", "autofindviews")
             //props & target file
             .AddFile("Sources/AutoFindViews.Build/AutoFindViews.targets", "build/monoandroid")
-            //.AddFile("src/Storm.BuildTasks.AndroidColors/Storm.BuildTasks.AndroidColors.targets", "build/monoandroid")
         )
     )
 	.Build();
